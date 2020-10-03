@@ -17,7 +17,9 @@ from TYY_generators import *
 from keras.utils import plot_model
 from moviepy.editor import *
 import cv2
+import matplotlib.pyplot as plt
 logging.basicConfig(level=logging.DEBUG)
+
 
 
 
@@ -130,7 +132,14 @@ def main():
     logging.debug("Saving weights...")
     model.save_weights(os.path.join(db_name+"_models/"+save_name, save_name+'.h5'), overwrite=True)
     pd.DataFrame(hist.history).to_hdf(os.path.join(db_name+"_models/"+save_name, 'history_'+save_name+'.h5'), "history")
-
+    # summarize history for loss
+    plt.plot(history.history['loss'])
+    plt.plot(history.history['val_loss'])
+    plt.title('model loss')
+    plt.ylabel('loss')
+    plt.xlabel('epoch')
+    plt.legend(['train', 'test'], loc='upper left')
+    plt.show()
 
 if __name__ == '__main__':
     main()
