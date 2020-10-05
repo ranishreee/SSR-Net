@@ -55,17 +55,17 @@ def main():
         img = cv2.imread(root_path + str(full_path[i][0]))
         out_imgs.append(cv2.resize(img, (img_size, img_size)))
         
-        path_r = '/content/im_rani_'
+    path_r = '/content/im_rani_'
 
-        for i in range(1,6):
-          im_arr=cv2.imread(path_r+str(i)+'.jpg')
-          resized=cv2.resize(im_arr,(64,64),interpolation=cv2.INTER_AREA)
-          for i in range(0,20):
+    for i in range(1,6):
+        im_arr=cv2.imread(path_r+str(i)+'.jpg')
+        resized=cv2.resize(im_arr,(64,64),interpolation=cv2.INTER_AREA)
+        for i in range(0,20):
             out_imgs.append(resized) 
 
-        for j in range(0,100):
-          out_ages.append(23)
-          out_genders.append(0)
+    for j in range(0,100):
+        out_ages.append(23)
+        out_genders.append(0)
 
 
     np.savez(output_path,image=np.array(out_imgs), gender=np.array(out_genders), age=np.array(out_ages), img_size=img_size)
